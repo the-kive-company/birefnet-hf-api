@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "6000:6000"
+    volumes:
+      - ./instance:/app/instance
+    environment:
+      - FLASK_APP=run.py
+      - FLASK_ENV=production
+      - API_TOKEN=${API_TOKEN:-default_token_for_development}
+    restart: unless-stopped
